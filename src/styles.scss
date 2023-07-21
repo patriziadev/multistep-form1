@@ -1,0 +1,240 @@
+// Colors
+
+$marine-blue: hsl(213, 96%, 18%);
+$purplish-blue: hsl(243, 100%, 62%);
+$pastel-blue: hsl(228, 100%, 84%);
+$light-blue: hsl(206, 94%, 87%);
+$strawberry-red: hsl(354, 84%, 57%);
+$cool-gray: hsl(231, 11%, 63%);
+$light-gray: hsl(229, 24%, 87%);
+$magnolia: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+
+// Fonts
+$main-font-family: "Ubuntu", sans-serif;
+$main-font-size: 16px;
+
+// Text
+@mixin textInEvidence {
+    color: $marine-blue;
+}
+
+// Button
+@mixin button($color, $background-color, $horizontalPadding) {
+    color: $color;
+    background-color: $background-color;
+    text-transform: capitalize;
+    padding: 10px $horizontalPadding;
+    margin-top: 1em;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+body {
+    font-family: $main-font-family;
+    font-size: $main-font-size;
+    color: $cool-gray;
+    background-color: $magnolia;
+    padding: 0;
+    margin: 0;
+
+    a:link,
+    a:visited {
+        color: $cool-gray;
+        text-decoration: none;
+    }
+    a:hover {
+        color: $marine-blue !important;
+    }
+
+    main {
+        #wrapper {
+            width: 50rem;
+            height: 30rem;
+            max-height: 568px;
+            border-radius: 20px;
+            background-color: $alabaster;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            padding: 1em;
+
+            nav {
+                width: 30%;
+                background-image: url(./assets/images/bg-sidebar-desktop.svg);
+                background-position: bottom;
+                border-radius: 10px;
+            }
+            section {
+                padding: 0 3em;
+                width: 58%;
+
+                h1 {
+                    color: $marine-blue;
+                    font-size: xx-large;
+                }
+
+                #step {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 100%;
+
+                    .input-form {
+                        padding: 10px 0;
+
+                        .input-info {
+                            font-size: small;
+                            padding: 10px 0;
+                            display: flex;
+                            justify-content: space-between;
+
+                            .validation-error {
+                                color: $strawberry-red;
+                                font-weight: bold;
+                            }
+                        }
+
+                        input {
+                            color: $marine-blue;
+                            font-weight: bold;
+                            width: calc(100% - 20px);
+                            font-size: $main-font-size;
+                            background-color: transparent;
+                            border: 1px solid $light-gray;
+                            border-radius: 5px;
+                            padding: 10px;
+
+                            &::placeholder {
+                                color: $cool-gray;
+                                font-size: $main-font-size;
+                                font-weight: normal;
+                            }
+
+                            &.ng-invalid.ng-touched {
+                                border-color: $strawberry-red;
+                            }
+
+                            &:focus,
+                            &:active {
+                                border-color: $purplish-blue;
+                            }
+                        }
+                    }
+
+                    .form-closure {
+                        text-align: right;
+                        bottom: 10px;
+                        position: fixed;
+                        width: 60%;
+                    }
+
+                    .next-button {
+                        @include button($alabaster, $marine-blue, 20px);
+
+                        &:hover {
+                            filter: brightness(1.8);
+                        }
+
+                        &[disabled] {
+                            background-color: $pastel-blue;
+                            cursor: auto;
+                        }
+
+                        &[disabled]:hover {
+                            filter: none;
+                        }
+                    }
+
+                    .back-button {
+                        @include button($cool-gray, transparent, 0);
+
+                        &:hover {
+                            filter: brightness(0.8);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+
+        .attribution {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            padding: 15px 0;
+            font-size: small;
+            text-align: center;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body main {
+        #wrapper {
+            width: 100%;
+            display: block;
+            padding: 0;
+            position: initial;
+            transform: none;
+            background-color: transparent;
+
+            nav {
+                width: 100%;
+                height: 170px;
+                background-image: url("./assets/images/bg-sidebar-mobile.svg");
+                border-radius: 0;
+
+                #steps {
+                    display: flex;
+                    justify-content: center;
+
+                    .step-text {
+                        display: none;
+                    }
+                }
+            }
+
+            section {
+                width: initial;
+                padding: 0 1rem;
+
+                .form-body,
+                #thankyou {
+                    background: $alabaster;
+                    border-radius: 10px;
+                    padding: 1.5rem;
+                    margin-top: -4.5rem;
+                    box-shadow: 0 7px 10px -10px $cool-gray;
+
+                    h1 {
+                        margin: 0;
+                        font-size: x-large;
+                    }
+                }
+
+                #step .form-closure {
+                    position: absolute;
+                    bottom: 60px;
+                    left: 0;
+                    background: $alabaster;
+                    width: 100%;
+
+                    button.next-button,
+                    .back-button {
+                        margin: 10px 20px;
+                    }
+                }
+            }
+        }
+    }
+}

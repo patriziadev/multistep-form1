@@ -1,0 +1,58 @@
+@import "../../../styles.scss";
+
+.form-body {
+    .summary {
+        padding: 15px;
+        background-color: $magnolia;
+        border-radius: 10px;
+
+        .plan,
+        .addon {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+
+            .title,
+            .cost {
+                text-transform: capitalize;
+                line-height: 1.5;
+
+                &.main {
+                    font-weight: bold;
+                }
+
+                span {
+                    text-transform: none;
+                }
+            }
+
+            .title.main,
+            .cost {
+                color: $marine-blue;
+            }
+
+            .changeLink {
+                line-height: 1.2;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    #totalCost {
+        display: flex;
+        justify-content: space-between;
+        padding: 25px;
+
+        .costAmount {
+            color: $purplish-blue;
+            font-weight: bold;
+            font-size: larger;
+        }
+    }
+}
+
+.form-closure {
+    display: flex;
+    justify-content: space-between;
+}

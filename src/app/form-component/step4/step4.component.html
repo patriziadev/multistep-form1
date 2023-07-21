@@ -1,0 +1,68 @@
+<div class="form-body">
+    <div class="form-intro">
+        <h1>Finishing up</h1>
+        <p>Double-check everything looks OK before confirming.</p>
+    </div>
+    <div class="summary">
+        <div class="plan">
+            <div class="choosenPlan">
+                <div class="title main">
+                    {{ subscriptionData.planType }} ({{
+                        subscriptionData.yearlyPlan ? "Yearly" : "Monthly"
+                    }})
+                </div>
+                <div class="changeLink" (click)="onChangePlan()">Change</div>
+            </div>
+            <div class="cost main">
+                {{ subscriptionData.planCost
+                }}<span *ngIf="!subscriptionData.yearlyPlan">$/mo</span>
+                <span *ngIf="subscriptionData.yearlyPlan">$/yr</span>
+            </div>
+        </div>
+        <hr />
+        <div class="addons">
+            <div class="addon" *ngIf="subscriptionData.onlineService">
+                <div class="title normal">Online service</div>
+                <div class="cost">
+                    {{ subscriptionData.onlineServiceCost
+                    }}<span *ngIf="!subscriptionData.yearlyPlan">$/mo</span>
+                    <span *ngIf="subscriptionData.yearlyPlan">$/yr</span>
+                </div>
+            </div>
+            <div class="addon" *ngIf="subscriptionData.largerStorage">
+                <div class="title normal">Larger storage</div>
+                <div class="cost">
+                    {{ subscriptionData.largerStorageCost
+                    }}<span *ngIf="!subscriptionData.yearlyPlan">$/mo</span>
+                    <span *ngIf="subscriptionData.yearlyPlan">$/yr</span>
+                </div>
+            </div>
+            <div class="addon" *ngIf="subscriptionData.customizableProfile">
+                <div class="title normal">Customizable profile</div>
+                <div class="cost">
+                    {{ subscriptionData.customizableProfileCost
+                    }}<span *ngIf="!subscriptionData.yearlyPlan">$/mo</span>
+                    <span *ngIf="subscriptionData.yearlyPlan">$/yr</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="totalCost">
+        <div class="costTitle">
+            Total <span *ngIf="!subscriptionData.yearlyPlan">(per month)</span>
+            <span *ngIf="subscriptionData.yearlyPlan">(per year)</span>
+        </div>
+        <div class="costAmount">
+            +${{ total }}/<span *ngIf="!subscriptionData.yearlyPlan">mo</span
+            ><span *ngIf="subscriptionData.yearlyPlan">yr</span>
+        </div>
+    </div>
+</div>
+<div class="form-closure">
+    <button class="back-button" type="button" (click)="onGoBack()">
+        Go back
+    </button>
+    <button class="next-button" type="button" (click)="onSubmit()">
+        Confirm
+    </button>
+</div>

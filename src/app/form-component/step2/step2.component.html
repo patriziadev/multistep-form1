@@ -1,0 +1,88 @@
+<form [formGroup]="planInfo" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+        <div class="form-intro">
+            <h1>Select your plan</h1>
+            <p>You have the option of monthly or yearly billing.</p>
+        </div>
+        <div id="plans">
+            <label
+                *ngFor="let pt of planTypes"
+                for="{{ pt.name }}"
+                [ngClass]="{
+                    planItemSelected: planInfo.value.planType == pt.name
+                }"
+            >
+                <div class="planTypeImage">
+                    <img
+                        src="/assets/images/icon-{{ pt.name }}.svg"
+                        alt="{{ pt.name }} icon"
+                    />
+                </div>
+
+                <div class="planTypeText">
+                    <p class="planTypeName">{{ pt.name }}</p>
+                    <p class="planTypeCost" *ngIf="!planInfo.value.yearlyPlan">
+                        ${{ pt.monthlyCost }}/mo
+                    </p>
+                    <p
+                        class="planTypeCost"
+                        *ngIf="planInfo.get('yearlyPlan').value"
+                    >
+                        ${{ pt.yearlyCost }}/yr
+                    </p>
+                    <p class="promo" *ngIf="planInfo.get('yearlyPlan').value">
+                        2 month free
+                    </p>
+                </div>
+
+                <input
+                    type="radio"
+                    name="planType"
+                    id="{{ pt.name }}"
+                    value="{{ pt.name }}"
+                    formControlName="planType"
+                />
+            </label>
+        </div>
+        <div id="period">
+            <div class="planPeriod">
+                <p
+                    [ngClass]="{
+                        selectedItem: !planInfo.get('yearlyPlan').value
+                    }"
+                >
+                    Monthly
+                </p>
+                <label for="planDuration" class="switch">
+                    <input
+                        type="checkbox"
+                        name="yearlyPlan"
+                        id="planDuration"
+                        formControlName="yearlyPlan"
+                    />
+                    <div class="slider round"></div>
+                </label>
+                <p
+                    [ngClass]="{
+                        selectedItem: planInfo.value.yearlyPlan
+                    }"
+                >
+                    Yearly
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-closure">
+        <button class="back-button" type="button" (click)="onGoBack()">
+            Go back
+        </button>
+        <button
+            class="next-button"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="!planInfo.valid"
+        >
+            Next step
+        </button>
+    </div>
+</form>

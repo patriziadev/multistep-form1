@@ -1,0 +1,42 @@
+@import "../../styles.scss";
+
+#steps {
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: small;
+
+    .step {
+        display: flex;
+        margin: 25px 10px;
+
+        .step-number {
+            border-radius: 50%;
+            border: 1px solid $alabaster;
+            padding: 5px;
+            width: 20px;
+            height: 20px;
+            line-height: 1.5;
+            text-align: center;
+            color: $alabaster;
+
+            &.highlighted {
+                color: $purplish-blue;
+                background-color: $light-blue;
+                border-color: $light-blue;
+            }
+        }
+
+        .step-text {
+            margin-left: 15px;
+
+            .counter {
+                font-size: smaller;
+            }
+
+            .title {
+                color: $alabaster;
+                font-weight: bold;
+            }
+        }
+    }
+}

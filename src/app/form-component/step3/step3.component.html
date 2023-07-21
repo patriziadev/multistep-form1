@@ -1,0 +1,61 @@
+<form [formGroup]="planInfo" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+        <div class="form-intro">
+            <h1>Pick add-ons</h1>
+            <p>Add-ons help enhance your gaming experience.</p>
+        </div>
+        <div class="addons-info">
+            <label
+                *ngFor="let addon of addons"
+                for="{{ addon.name }}"
+                [ngClass]="{
+                    checkedOS:
+                        planInfo.value.onlineService &&
+                        addon.id == 'onlineService',
+                    checkedLS:
+                        planInfo.value.largerStorage &&
+                        addon.id == 'largerStorage',
+                    checkedCP:
+                        planInfo.value.customizableProfile &&
+                        addon.id == 'customizableProfile'
+                }"
+            >
+                <input
+                    type="checkbox"
+                    id="{{ addon.name }}"
+                    name="{{ addon.id }}"
+                    formControlName="{{ addon.id }}"
+                />
+                <div class="offers">
+                    <p class="offer-title">{{ addon.name }}</p>
+                    <p class="offer-description">{{ addon.description }}</p>
+                </div>
+                <div
+                    class="offer-cost"
+                    *ngIf="subscriptionData.yearlyPlan == false"
+                >
+                    +$ {{ addon.monthlyCost }}/mo
+                </div>
+                <div
+                    class="offer-cost"
+                    *ngIf="subscriptionData.yearlyPlan == true"
+                >
+                    +$ {{ addon.yearlyCost }}/yr
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="form-closure">
+        <button class="back-button" type="button" (click)="onGoBack()">
+            Go back
+        </button>
+        <button
+            class="next-button"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="!planInfo.valid"
+        >
+            Next step
+        </button>
+    </div>
+</form>

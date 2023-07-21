@@ -1,0 +1,81 @@
+<form [formGroup]="personalInfo" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+        <div class="form-intro">
+            <h1>Personal info</h1>
+            <p>Please provide your name, email address and phone number.</p>
+        </div>
+        <div class="input-form">
+            <div class="input-info">
+                <label for="name">Name</label>
+                <div
+                    class="validation-error"
+                    *ngIf="
+                        !personalInfo.get('name').valid &&
+                        personalInfo.get('name').touched
+                    "
+                >
+                    This field is required
+                </div>
+            </div>
+            <input
+                name="name"
+                type="text"
+                id="name"
+                formControlName="name"
+                placeholder="e.g. Stephen King"
+            />
+        </div>
+        <div class="input-form">
+            <div class="input-info">
+                <label for="email">Email Address</label>
+                <div
+                    class="validation-error"
+                    *ngIf="
+                        !personalInfo.get('email').valid &&
+                        personalInfo.get('email').touched
+                    "
+                >
+                    Insert a valid email address
+                </div>
+            </div>
+            <input
+                name="email"
+                type="email"
+                id="email"
+                formControlName="email"
+                placeholder="e.g. stephenking@lorem.com"
+            />
+        </div>
+        <div class="input-form">
+            <div class="input-info">
+                <label for="phone">Phone Number</label>
+                <div
+                    class="validation-error"
+                    *ngIf="
+                        !personalInfo.get('phone').valid &&
+                        personalInfo.get('phone').touched
+                    "
+                >
+                    This field is required
+                </div>
+            </div>
+            <input
+                name="phone"
+                type="text"
+                id="phone"
+                formControlName="phone"
+                placeholder="e.g. +1 234 567 890"
+            />
+        </div>
+    </div>
+    <div class="form-closure">
+        <button
+            class="next-button"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="!personalInfo.valid"
+        >
+            Next step
+        </button>
+    </div>
+</form>

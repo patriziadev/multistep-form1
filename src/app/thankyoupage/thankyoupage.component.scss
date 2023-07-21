@@ -1,0 +1,10 @@
+@import "../../styles.scss";
+
+#thankyou {
+    text-align: center;
+    line-height: 1.5;
+
+    a {
+        color: $cool-gray;
+    }
+}

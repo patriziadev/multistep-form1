@@ -1,0 +1,54 @@
+@import "../../../styles.scss";
+
+.form-body {
+    .addons-info label {
+        border: 1px solid $cool-gray;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 1rem 0;
+        padding: 0.2rem 0;
+
+        &:hover {
+            cursor: pointer;
+            border: 1px solid $purplish-blue;
+            background-color: $magnolia;
+        }
+
+        &.checkedOS,
+        &.checkedLS,
+        &.checkedCP {
+            border: 1px solid $purplish-blue;
+            background-color: $magnolia;
+        }
+
+        input[type="checkbox"] {
+            accent-color: $purplish-blue;
+            width: 18px;
+            height: 20px;
+        }
+
+        .offers {
+            width: 60%;
+
+            p {
+                line-height: 0.8rem;
+            }
+
+            .offer-title {
+                @include textInEvidence;
+                font-weight: bold;
+            }
+        }
+
+        .offer-cost {
+            color: $purplish-blue;
+        }
+    }
+}
+
+.form-closure {
+    display: flex;
+    justify-content: space-between;
+}
